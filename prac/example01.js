@@ -9,4 +9,4 @@ b = "hello";
 console.log(b);
 
 const con = "nodejs";
-con = 1000;
+console.log(con);
