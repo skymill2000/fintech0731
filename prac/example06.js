@@ -11,9 +11,7 @@ let car = {
 
 let carname = car.name;
 let carhp = car.hp;
-
 console.log(carname, carhp);
 
 let { name, hp } = car;
-
 console.log(name, hp);
