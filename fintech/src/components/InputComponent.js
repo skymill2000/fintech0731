@@ -15,7 +15,6 @@ const InputComponent = () => {
   return (
     <div>
       <b>{username}</b>
-      <br>변경사항</br>
       <input onChange={handleChange}></input>
       <button onClick={handleClick}>입력</button>
     </div>
