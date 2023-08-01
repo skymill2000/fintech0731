@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Welcome from "./Welcome";
-import UserInfoComponent from "./UserInfoComponent";
 //rafce 입력
 const ListComponent = () => {
   const [users, setUsers] = useState([
@@ -11,12 +10,7 @@ const ListComponent = () => {
   return (
     <div>
       {users.map((user) => {
-        return (
-          <>
-            <Welcome userName={user.username} age={user.age}></Welcome>
-            <UserInfoComponent name={user.username}></UserInfoComponent>
-          </>
-        );
+        return <Welcome userName={user.username} age={user.age}></Welcome>;
       })}
     </div>
   );
