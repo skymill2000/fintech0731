@@ -39,7 +39,6 @@ const MainPage = () => {
   return (
     <div>
       <AppHeader title={"메인"} />
-
       {accountList.map((account) => {
         return (
           <>
