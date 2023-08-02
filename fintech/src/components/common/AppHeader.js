@@ -8,6 +8,7 @@ const HeaderContainer = styled.div`
   padding: 20px;
   font-size: 24px;
   font-weight: bold;
+  text-align: center;
 `;
 
 const AppHeader = ({ title }) => {
