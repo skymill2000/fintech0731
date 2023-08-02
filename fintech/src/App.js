@@ -5,12 +5,14 @@ import StyledComponent from "./components/StyledComponent";
 import AxiosComponent from "./components/AxiosComponent";
 import NewsPage from "./pages/NewsPage";
 import AuthPage from "./pages/AuthPage";
+import AuthResultPage from "./pages/AuthResultPage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AuthPage />}></Route>
+        <Route path="/authResult" element={<AuthResultPage />}></Route>
       </Routes>
     </BrowserRouter>
   );
