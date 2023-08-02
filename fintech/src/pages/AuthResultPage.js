@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppHeader from "../components/common/AppHeader";
 import { useLocation } from "react-router-dom";
 import queryString from "query-string";
@@ -9,6 +9,8 @@ const AuthResultPage = () => {
   const parsed = queryString.parse(queryParams);
   console.log(parsed.code);
   const authCode = parsed.code;
+  const [accessToken, setAccessToken] = useState("");
+  const [userSeqNo, setUserSeqNo] = useState("");
 
   const handleClick = () => {
     //axios 요청 만들기
@@ -27,8 +29,16 @@ const AuthResultPage = () => {
         grant_type: "authorization_code",
       },
     };
-    axios(requestOption).then((response) => {
-      console.log(response);
+    axios(requestOption).then(({ data }) => {
+      setAccessToken(data.access_token);
+      setUserSeqNo(data.user_seq_no);
+      if (data.rsp_code !== "O0001") {
+        localStorage.setItem("accessToken", data.access_token);
+        localStorage.setItem("userSeqNo", data.user_seq_no);
+        alert("저장 완료");
+      } else {
+        alert("인증에 실패했습니다 다시 시도해 주세요");
+      }
     });
   };
 
@@ -37,6 +47,8 @@ const AuthResultPage = () => {
       <AppHeader title={"인증결과 / 토큰 생성"}></AppHeader>
       <p>코드 : {authCode}</p>
       <button onClick={handleClick}>accessToken 요청</button>
+      <p>accessToken : {accessToken}</p>
+      <p>userSeqNo : {userSeqNo}</p>
     </div>
   );
 };
