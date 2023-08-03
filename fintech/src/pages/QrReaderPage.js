@@ -12,9 +12,9 @@ const QrReaderPage = () => {
     setOpenModal(false);
   };
 
-  const handleRead = (code) => {
+  const handleRead = (val) => {
     setOpenModal(true);
-    setVal(code.data);
+    setVal(val);
   };
   return (
     <div>
@@ -23,6 +23,7 @@ const QrReaderPage = () => {
       <Modal isOpen={openModal} onRequestClose={closeModal}>
         <ModalWithdraw tofintechno={val}></ModalWithdraw>
       </Modal>
+      {val}
     </div>
   );
 };
