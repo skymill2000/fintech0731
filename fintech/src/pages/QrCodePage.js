@@ -4,6 +4,7 @@ import { QRCodeSVG } from "qrcode.react";
 import queryString from "query-string";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
+
 const QRBlock = styled.div`
   display: flex;
   flex-direction: column;
