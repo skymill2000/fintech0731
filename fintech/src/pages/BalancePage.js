@@ -4,6 +4,7 @@ import AppHeader from "../components/common/AppHeader";
 import queryString from "query-string";
 import axios from "axios";
 import BalanceCard from "../components/balance/BalanceCard";
+import TransactionList from "../components/balance/TrasactionList";
 
 const BalancePage = () => {
   let accessToken = "";
@@ -98,7 +99,7 @@ const BalancePage = () => {
 
     axios(option).then(({ data }) => {
       console.log(data);
-      // setTransactionList(data.res_list);
+      setTransactionList(data.res_list);
     });
   };
 
@@ -110,6 +111,7 @@ const BalancePage = () => {
         fintechNo={balance.fintech_use_num}
         balance={balance.balance_amt}
       ></BalanceCard>
+      <TransactionList transactionList={transactionList}></TransactionList>
     </div>
   );
 };
