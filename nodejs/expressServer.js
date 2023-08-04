@@ -1,6 +1,7 @@
 var express = require("express");
 let crypto = require("crypto");
 const mysql = require("mysql2");
+const axios = require("axios");
 const secret = "abcdefg";
 let jwt = require("jsonwebtoken");
 const auth = require("./lib/auth");
@@ -83,8 +84,23 @@ app.get("/account", auth, (req, res) => {
     const accesstoken = AESDecrypt(result[0].accesstoken);
     const userSeqNo = result[0].userseqno;
     console.log(accesstoken);
+    const sendData = {
+      user_seq_no: userSeqNo,
+    };
 
-    //axios 요청 작성
+    const option = {
+      method: "GET",
+      url: "https://testapi.openbanking.or.kr/v2.0/user/me",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        Authorization: `Bearer ${accesstoken}`,
+      },
+      params: sendData,
+    };
+
+    axios(option).then(({ data }) => {
+      res.json(data);
+    });
   });
 });
 
