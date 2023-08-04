@@ -15,7 +15,7 @@ const AESEncrypt = (plainTxt) => {
   console.log(encrypted);
 };
 
-// AESEncrypt("");
+AESEncrypt("1234");
 // AESDecrypt("");
 
 const AESDecrypt = (plainTxt) => {
