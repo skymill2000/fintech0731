@@ -12,14 +12,14 @@ app.get("/test", function (req, res) {
   res.send("test page 입니다.");
 });
 
-app.get("/req", function (req, res) {
+app.get("/user", function (req, res) {
   console.log(req.query.test);
   res.send("hello world");
 });
 
-app.post("/req", function (req, res) {
+app.post("/user", function (req, res) {
   console.log(req.body);
   res.send("hello world");
 });
 
-app.listen(3000);
+app.listen(4000);
