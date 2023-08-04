@@ -5,30 +5,26 @@ import axios from "axios";
 const MainPage = () => {
   let accessToken = "";
   let userSeqNo = "";
+  let ourtoken = "";
   let [accountList, setAccountList] = useState([]);
 
   useEffect(() => {
     console.log(localStorage.getItem("accessToken"));
     console.log(localStorage.getItem("userSeqNo"));
     accessToken = localStorage.getItem("accessToken");
+    ourtoken = localStorage.getItem("ourToken");
     userSeqNo = localStorage.getItem("userSeqNo");
     getAccountList();
   }, []);
 
   const getAccountList = () => {
     //axios 요청
-    const sendData = {
-      user_seq_no: userSeqNo,
-    };
-
     const option = {
       method: "GET",
-      url: "/v2.0/user/me",
+      url: "/account",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        Authorization: `Bearer ${accessToken}`,
+        ourtoken: ourtoken,
       },
-      params: sendData,
     };
 
     axios(option).then(({ data }) => {

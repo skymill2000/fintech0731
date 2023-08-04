@@ -87,7 +87,6 @@ app.get("/account", auth, (req, res) => {
     const sendData = {
       user_seq_no: userSeqNo,
     };
-
     const option = {
       method: "GET",
       url: "https://testapi.openbanking.or.kr/v2.0/user/me",
@@ -97,7 +96,6 @@ app.get("/account", auth, (req, res) => {
       },
       params: sendData,
     };
-
     axios(option).then(({ data }) => {
       res.json(data);
     });
