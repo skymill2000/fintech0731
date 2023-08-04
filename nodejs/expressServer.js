@@ -76,8 +76,31 @@ app.post("/login", function (req, res) {
   });
 });
 
+app.get("/account", auth, (req, res) => {
+  let { userId } = req.decoded;
+  const sql = "SELECT * FROM user WHERE id = ?";
+  connection.query(sql, [userId], function (err, result) {
+    const accesstoken = AESDecrypt(result[0].accesstoken);
+    const userSeqNo = result[0].userseqno;
+    console.log(accesstoken);
+
+    //axios 요청 작성
+  });
+});
+
 const hash = (input) => {
   return crypto.createHmac("sha256", secret).update(input).digest("hex");
+};
+
+const AESDecrypt = (plainTxt) => {
+  const algorithm = "aes-256-cbc";
+  const key = "tDAArT4tgoJra4AVYYUgt9Nvb9aImrTm";
+  const iv = "oNYgvfAAoAUb9mmD";
+  const cipher = crypto.createDecipheriv(algorithm, key, iv);
+  let decrypted = cipher.update(plainTxt, "base64", "utf8");
+  decrypted += cipher.final("utf-8");
+  console.log(decrypted);
+  return decrypted;
 };
 
 app.listen(4000);
