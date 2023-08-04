@@ -44,5 +44,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://testapi.openbanking.or.kr"
+  "proxy": "http://localhost:4000"
 }
