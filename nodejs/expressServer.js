@@ -22,4 +22,10 @@ app.post("/user", function (req, res) {
   res.send("hello world");
 });
 
+app.post("/login", function (req, res) {
+  console.log(req.body.id);
+  console.log(req.body.password);
+  res.send("hello world");
+});
+
 app.listen(4000);
