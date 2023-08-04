@@ -1,18 +1,9 @@
 let crypto = require("crypto");
-
 const secret = "abcdefg";
-const secret2 = "abcdef";
-const hash = crypto
-  .createHmac("sha256", secret)
-  .update("비밀번호1234")
-  .digest("hex");
 
-const hash2 = crypto
-  .createHmac("sha256", secret2)
-  .update("비밀번호1234")
-  .digest("hex");
-
-console.log(hash === hash2);
+const hash = (input) => {
+  return crypto.createHmac("sha256", secret).update(input).digest("hex");
+};
 
 const AESEncrypt = (plainTxt) => {
   const algorithm = "aes-256-cbc";
@@ -26,3 +17,15 @@ const AESEncrypt = (plainTxt) => {
 
 // AESEncrypt("");
 // AESDecrypt("");
+
+const AESDecrypt = (plainTxt) => {
+  const algorithm = "aes-256-cbc";
+  const key = "tDAArT4tgoJra4AVYYUgt9Nvb9aImrTm";
+  const iv = "oNYgvfAAoAUb9mmD";
+  const cipher = crypto.createDecipheriv(algorithm, key, iv);
+  let decrypted = cipher.update(plainTxt, "base64", "utf8");
+  decrypted += cipher.final("utf-8");
+  console.log(decrypted);
+};
+
+AESDecrypt("BHH3zWvc/D+AuxB1jGOZ8doMqLEcNk1KKUjYLZnZeHU=");
